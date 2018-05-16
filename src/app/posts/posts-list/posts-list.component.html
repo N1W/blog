@@ -1,0 +1,10 @@
+<h1>All Posts</h1>
+<mat-list>
+  <app-posts-item
+    *ngFor="let item of posts; let i = index"
+    [posts]="item"
+    [index]="item.id">
+  </app-posts-item>
+</mat-list>
+<div>{{pageSize}}</div>
+

@@ -1,33 +1,9 @@
-<div>
-  <div class="header_photo">
-    <img src="" alt="photo">
-  </div>
+<mat-toolbar>
+  <span routerLink="/news" (click)="goTo('https://jsonplaceholder.typicode.com/posts/1/comments')">News</span>
 
-  <div class="header_menu">
-    <div class="menu_logo">
-      <a href="#">
-        <img src="" alt="logo">
-      </a>
-    </div>
+  <span routerLink="/movies" (click)="goTo('https://jsonplaceholder.typicode.com/posts/2/comments')">Movies</span>
 
-    <nav>
-      <ul>
-        <li>
-          <a href="#">Movies</a>
-        </li>
+  <span routerLink="/serials" (click)="goTo('https://jsonplaceholder.typicode.com/posts/3/comments')">Serials</span>
 
-        <li>
-          <a href="#">Serials</a>
-        </li>
-
-        <li>
-          <a href="#">Books</a>
-        </li>
-
-        <li>
-          <a href="#">Travel</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
+  <span routerLink="/books" (click)="goTo('https://jsonplaceholder.typicode.com/posts/4/comments')">Books</span>
+</mat-toolbar>
