@@ -13,7 +13,6 @@ export class PostService {
   constructor(private http: Http, private route: ActivatedRoute) {}
 
   getPosts(url) {
-    console.log(url);
     this.http.get(url)
       .subscribe(
         (response: Response) => {

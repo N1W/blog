@@ -6,5 +6,9 @@
     [index]="item.id">
   </app-posts-item>
 </mat-list>
-<div>{{pageSize}}</div>
+<div (click)="prev()"><<<<-SydA</div>
+<ul>
+  <li *ngFor="let index of pagination">{{index}}</li>
+</ul>
+<div (click)="next()">TydA->>>></div>
 

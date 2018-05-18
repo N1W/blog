@@ -7,11 +7,8 @@ import {SerialsComponent} from './serials/serials.component';
 import {BooksComponent} from './books/books.component';
 
 const router: Routes = [
-  {path: '', redirectTo: '/news', pathMatch: 'full'},
-  {path: 'news', component: NewsComponent, pathMatch: 'full'},
-  {path: 'movies', component: MoviesComponent, pathMatch: 'full'},
-  {path: 'serials', component: SerialsComponent, pathMatch: 'full'},
-  {path: 'books', component: BooksComponent, pathMatch: 'full'}
+  {path: '', redirectTo: '/news/page/1', pathMatch: 'full'},
+  {path: ':topic/page/:id', component: NewsComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
