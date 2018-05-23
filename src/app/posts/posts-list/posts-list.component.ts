@@ -12,11 +12,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class PostsListComponent implements OnInit {
   page = parseInt(this.router.snapshot.params['id'], 10);
-  size = 20;
+  size = 10;
   pagination = [];
   allPosts: any [];
   posts: any[];
   subscription: Subscription;
+  pageSubscription: Subscription;
   @Input() pageSize: number;
 
   constructor(private postService: PostService, private route: Router, private router: ActivatedRoute) { }
@@ -27,14 +28,34 @@ export class PostsListComponent implements OnInit {
         (posts: any[]) => {
           this.allPosts = posts;
           this.posts = this.allPosts.slice(((this.page - 1) * this.size), (this.page * this.size));
+        }
+      );
+    this.pageSubscription = this.postService.pageChanged
+      .subscribe(
+        (page: number) => {
+          this.page = page;
+          console.log('in post', this.allPosts.length);
           for (let i = this.page; i < (this.page + 5); i++) {
             if (i <= (this.allPosts.length / this.size)) {
+              console.log('first if');
+              this.pagination.push(i);
+            }
+            if ((this.allPosts.length / this.size) < 1 && i === 1) {
+              console.log('second if');
+              this.pagination = [];
               this.pagination.push(i);
             }
           }
         }
       );
     console.log(this.pagination);
+  }
+
+  selectPage(selectedPage) {
+    if(selectedPage !== this.page){
+      this.page = selectedPage - 1;
+      this.next();
+    }
   }
   next() {
     if (this.page < (this.allPosts.length / this.size)) {

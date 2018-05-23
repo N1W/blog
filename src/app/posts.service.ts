@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class PostService {
   postChanged = new Subject<any[]>();
+  pageChanged = new Subject<number>();
   posts: any[] = [];
 
   constructor(private http: Http, private route: ActivatedRoute) {}
@@ -19,12 +20,8 @@ export class PostService {
           this.posts = response.json();
           console.log(this.posts);
           this.postChanged.next(this.posts.slice());
+          this.pageChanged.next(1);
         }
       );
-  }
-
-  getPart(size, index){
-    console.log((size * index), (size * (index + 1)));
-      return this.posts.slice((size * index), (size * (index + 1)));
   }
 }

@@ -8,7 +8,7 @@
 </mat-list>
 <div (click)="prev()"><<<<-SydA</div>
 <ul>
-  <li *ngFor="let index of pagination">{{index}}</li>
+  <li *ngFor="let index of pagination" (click)="selectPage(index)">{{index}}</li>
 </ul>
 <div (click)="next()">TydA->>>></div>
 
