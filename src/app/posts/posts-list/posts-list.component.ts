@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class PostsListComponent implements OnInit {
   page = parseInt(this.router.snapshot.params['id'], 10);
-  size = 10;
+  size = 20;
   pagination = [];
   allPosts: any [];
   posts: any[];
@@ -22,17 +22,19 @@ export class PostsListComponent implements OnInit {
   constructor(private postService: PostService, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    for (let i = this.page; i < (this.page + 5); i++) {
-      this.pagination.push(i);
-    }
-    console.log(this.pagination);
     this.subscription = this.postService.postChanged
       .subscribe(
         (posts: any[]) => {
           this.allPosts = posts;
           this.posts = this.allPosts.slice(((this.page - 1) * this.size), (this.page * this.size));
+          for (let i = this.page; i < (this.page + 5); i++) {
+            if (i <= (this.allPosts.length / this.size)) {
+              this.pagination.push(i);
+            }
+          }
         }
       );
+    console.log(this.pagination);
   }
   next() {
     if (this.page < (this.allPosts.length / this.size)) {
@@ -42,7 +44,9 @@ export class PostsListComponent implements OnInit {
       console.log(this.page, this.posts);
       this.pagination = [];
       for (let i = this.page; i < (this.page + 5); i++) {
-        this.pagination.push(i);
+        if (i <= (this.allPosts.length / this.size)) {
+          this.pagination.push(i);
+        }
       }
     }
   }
@@ -52,6 +56,12 @@ export class PostsListComponent implements OnInit {
       this.route.navigate([this.router.snapshot.params['topic'] + '/page/' + this.page]);
       this.posts = this.allPosts.slice(((this.page - 1) * this.size), (this.page * this.size));
       console.log(this.page, this.posts);
+      this.pagination = [];
+      for (let i = this.page; i < (this.page + 5); i++) {
+        if (i <= (this.allPosts.length / this.size)) {
+          this.pagination.push(i);
+        }
+      }
     }
   }
 
