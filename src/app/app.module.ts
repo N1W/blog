@@ -13,14 +13,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { MoviesComponent } from './movies/movies.component';
-import { NewsComponent } from './news/news.component';
-import { SerialsComponent } from './serials/serials.component';
-import { BooksComponent } from './books/books.component';
-import {AppRoutingModule} from './app-routes.module';
+import { AppRoutingModule } from './app-routes.module';
 import { PostsComponent } from './posts/posts.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
-import {PostService} from './posts.service';
+import { PostService } from './posts.service';
 import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.component';
 
 
@@ -28,10 +24,6 @@ import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.com
   declarations: [
     AppComponent,
     HeaderComponent,
-    MoviesComponent,
-    NewsComponent,
-    SerialsComponent,
-    BooksComponent,
     PostsComponent,
     PostsListComponent,
     PostsItemComponent

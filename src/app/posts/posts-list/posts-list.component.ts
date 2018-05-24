@@ -26,7 +26,9 @@ export class PostsListComponent implements OnInit {
     this.subscription = this.postService.postChanged
       .subscribe(
         (posts: any[]) => {
+          this.page = parseInt(this.router.snapshot.params['id'], 10);
           this.allPosts = posts;
+          console.log(this.page);
           this.posts = this.allPosts.slice(((this.page - 1) * this.size), (this.page * this.size));
         }
       );
@@ -37,11 +39,9 @@ export class PostsListComponent implements OnInit {
           console.log('in post', this.allPosts.length);
           for (let i = this.page; i < (this.page + 5); i++) {
             if (i <= (this.allPosts.length / this.size)) {
-              console.log('first if');
               this.pagination.push(i);
             }
             if ((this.allPosts.length / this.size) < 1 && i === 1) {
-              console.log('second if');
               this.pagination = [];
               this.pagination.push(i);
             }
