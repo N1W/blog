@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-posts-item',
@@ -10,22 +11,13 @@ export class PostsItemComponent implements OnInit {
   @Input() posts: any;
   @Input() index: number;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
-  // sendPost() {
-  //   console.log('im here in fc');
-  //   this.http.get('http://94.45.133.18:53000/articles')
-  //     .subscribe(
-  //       res => {
-  //         console.log(res);
-  //       },
-  //       err => {
-  //         console.log('Error occured');
-  //       }
-  //     );
-  // }
+  openArticle(articleId){
+    this.route.navigate([this.router.snapshot.params['topic'] + '/article/' + articleId]);
+  }
 
 }
