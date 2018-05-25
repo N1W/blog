@@ -1,0 +1,19 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Login">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="password" matInput placeholder="Password">
+  </mat-form-field>
+
+  <span *ngIf="guestStatus; else logOut">
+    <button mat-button (click)="logIn()">LogIn</button>
+
+    <a mat-button routerLink="/registration">Registration</a>
+  </span>
+
+  <ng-template #logOut>
+    <button mat-button (click)="userLogOut()">LogOut</button>
+  </ng-template>
+</form>
